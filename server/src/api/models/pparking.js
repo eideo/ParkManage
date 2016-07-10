@@ -6,11 +6,15 @@
  * Created by libinqi on 2016/7/3.
  */
 
-module.exports = {
-    autoCreatedAt: true,
-    autoUpdatedAt: true,
-    autoPK: true,
-    attributes: {
+import {BaseModel} from './BaseModels/BaseModel';
+
+export default class extends BaseModel {
+  constructor() {
+    super();
+  }
+
+  static tableName = 'pparking';
+  static attributes = {
         id: {type: 'integer', primaryKey: true, autoIncrement: true},//车位Id
         parkingno: {type: 'string', unique: true,required:true},//车位编号
         parkingsize: {type: 'integer',required:true},//车位大小

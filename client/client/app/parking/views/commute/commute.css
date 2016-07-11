@@ -1,0 +1,5 @@
+.content-messenge-box dt,dd{display:inline-block;}
+.content-messenge-box dt{margin-right:10px; color:#999;}
+.content-messenge-box dd{color:#f46618; margin-right:40px; font-size:16px;}
+.form-control width-154.remarks{width:400px !important;}
+.content-messenge-box{margin: 0 !important; height:34px; line-height: 34px;}

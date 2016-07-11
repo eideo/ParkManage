@@ -1,0 +1,13 @@
+.data-chart{overflow: hidden;width: 70% !important;margin-bottom:20px;}
+.data-label{margin:10px 5px 0 0;}
+.data-input{margin-top: 2px;}
+.data-time{width: 60px;height: 26px;background: #d5e6f8;color:#6a6a6a;}
+.data-time:hover{width: 60px;height: 26px;background: #69a7eb;color:#fff;}
+.data-time-active{width: 60px;height: 26px;background: #2772c6;color:#fff;}
+.data-btn1{overflow: hidden;float: left;margin:4px 20px 0 5px; }
+.data-btn2{overflow: hidden;border:1px solid #f1ad4e;border-radius: 5px;float: left;margin:2px 0 0 10px;}
+.data-search{height: 28px;color: #e5911b;background: #fff;width: 70px;float: left;}
+.data-search:hover{height: 28px;color: #b56900;background: #fff;width: 70px;background: #ffd292;float: left;}
+.data-search-active{height: 28px;color: #b56900;background: #fff;width: 70px;background: #ffd292;float: left;}
+.border-right{border-right: 1px solid #f1ad4e;}
+.time-kai{border-radius: 4px !important;}

@@ -1,0 +1,208 @@
+<div class="out-in" ng-controller="parkingoutin as vm">
+	<div class="out-in-main">
+		<div class="out-in-l">
+		<form name="myForm" autocomplete="off" ng-submit="vm.update()" novalidate>
+			<div class="out-in-con">
+				<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+				<div class="row">
+				<div class="form-group park-input pull-left">
+					<div class="" style="height:30px; padding-top:4px;">
+					<!-- <input type="text" name="vehiclenumber" class="form-control width-154" placeholder="车牌号" ng-model="vm.vehicleinfo.vehiclenumber" ng-change="vm.vehiclenumberChange()" required/> -->
+					<!-- <div id="carNumber"></div> -->
+				  	<mk-Vehicle-Num open="Vparams.open" placeholder="车牌" format="$0$1" name="vehiclenumber" ng-model="Vparams.outputVehicleModel" vq="Vparams.inputVehicleModel"></mk-Vehicle-Num>
+					<!-- <span class="help-block" ng-show="submitted && myForm.vehiclenumber.$error.required">请输入车牌号!</span> -->
+					</div>
+				</div>
+<!-- 				<div class="form-group park-input pull-left input-append" data-role="acknowledge-input" ng-class="{'has-error':submitted && myForm.contactname.$invalid}">
+					<div class="row"><label  for="contactname" class="sr-only">司机名称</label></div>
+					<div class="clearfix pull-left"><input type="text" name="contactname" required="required" placeholder="Any Text Required" class="form-control width-154" placeholder="司机名称" ng-readonly="vm.vehicleinfo.iostate == '2'" ng-model="vm.vehicleinfo.contactname" required/>
+					<div data-role="acknowledgement"><i></i></div>
+					</div>
+				</div> -->
+
+				<div class="form-group park-input pull-left" ng-class="{'has-error':submitted && myForm.contactname.$invalid}">
+					<div class="row"><label  for="contactname" class="sr-only">司机名称</label></div>
+					<div class="input-group">
+						<input type="text" name="contactname" class="form-control width-114" placeholder="司机名称" data-toggle="tooltip" ng-readonly="vm.vehicleinfo.iostate == '2'" ng-model="vm.vehicleinfo.contactname" required/>
+						<div class="validate-info text-warning" ng-show="!vm.vehicleinfo.contactname">
+		                    <i class="icon-warning-sign fa fa-warning"></i>
+		                </div>
+		                <div class="validate-info text-success" ng-show="vm.vehicleinfo.contactname">
+		                    <i class="icon-ok fa fa-check"></i>
+		                </div>
+	                </div>
+				</div>
+
+				<div class="form-group clear park-input pull-left" ng-class="{'has-error':(submitted && myForm.telephonenumber.$invalid) || myForm.telephonenumber.$error.pattern}">
+					<div class="row"><label  for="telephonenumber" class="sr-only">手机号码</label></div>
+					<div class="input-group">
+						<input type="text" name="telephonenumber" class="form-control width-114" placeholder="手机号码" data-toggle="tooltip" ng-readonly="vm.vehicleinfo.iostate == '2'" ng-model="vm.vehicleinfo.telephonenumber" pattern="^1[3|4|5|7|8][0-9]{9}$" required/>
+						<div class="validate-info text-warning" ng-show="myForm.telephonenumber.$invalid">
+		                    <i class="icon-warning-sign fa fa-warning"></i>
+		                </div>
+		                <div class="validate-info text-success" ng-show="!myForm.telephonenumber.$invalid">
+		                    <i class="icon-ok fa fa-check"></i>
+		                </div>
+					<!-- <span class="help-block" ng-show="submitted && myForm.telephonenumber.$error.required">请输入联系电话!</span>
+					<span class="help-block" ng-show="submitted && myForm.telephonenumber.$error.pattern">输入的手机号码有误！</span> -->
+
+					</div>
+				</div>
+				<div class="form-group park-input pull-left" ng-class="{'has-error':submitted && myForm.chargeid.$invalid}">
+					<div class="row"><label  for="chargeid" class="sr-only">车型</label></div>
+					<div class="input-group">
+						<select class="form-control width-114" name="chargeid" ng-disabled="vm.vehicleinfo.iostate == '2'" ng-model="vm.vehicleinfo.chargeid" ng-options="it.cartypecode as it.cartype for it in cartype" ng-change="vm.carTypeChange()" required>
+				            <option value="">车辆类型</option>
+				        </select>
+				        <div class="validate-info text-warning" ng-show="myForm.chargeid.$invalid">
+		                    <i class="icon-warning-sign fa fa-warning"></i>
+		                </div>
+		                <div class="validate-info text-success" ng-show="!myForm.chargeid.$invalid">
+		                    <i class="icon-ok fa fa-check"></i>
+		                </div>
+				        <!-- <span class="help-block" ng-show="submitted && myForm.chargeid.$error.required">请选择车辆类型！</span> -->
+					</div>
+				</div>
+				<div class="form-group park-input pull-left" ng-class="{'has-error':(submitted && myForm.vehiclelength.$invalid) || (myForm.vehiclelength.$error.number || myForm.vehiclelength.$error.min || myForm.vehiclelength.$error.max)}">
+					<div class="row"><label  for="vehiclelength" class="sr-only">车长</label></div>
+					<div class="input-group">
+					<input type="number" name="vehiclelength" class="form-control width-114" placeholder="车长" ng-readonly="vm.vehicleinfo.iostate == '2'"  min="0" max="99" ng-model="vm.vehicleinfo.vehiclelength" required/>
+					<div class="validate-info text-warning pull-left" ng-show="myForm.vehiclelength.$invalid">
+	                    <i class="icon-warning-sign fa fa-warning"></i>
+	                </div>
+	                <div class="validate-info text-success pull-left" ng-show="!myForm.vehiclelength.$invalid">
+	                    <i class="icon-ok fa fa-check"></i>
+	                </div>
+					<!-- <span class="help-block" ng-show="submitted && myForm.vehiclelength.$error.required">请输入车长!</span>
+					<span class="help-block" ng-show="submitted && (myForm.vehiclelength.$error.number || myForm.vehiclelength.$error.min || myForm.vehiclelength.$error.max)">输入的车长有误，车长范围为0-99！</span> -->
+					<div class="clearfix pull-left unit"><label  for="vehiclelength">米</label></div>
+					</div>
+				</div>
+				<div class="form-group park-input pull-left" ng-class="{'has-error':(submitted && myForm.vehicletonnage.$invalid) || (myForm.vehicletonnage.$error.number || myForm.vehicletonnage.$error.min || myForm.vehicletonnage.$error.max)}">
+					<div class="row"><label  for="vehicletonnage" class="sr-only">载重</label></div>
+					<div class="input-group">
+					<input type="number" name="vehicletonnage" class="form-control width-114" placeholder="载重" ng-readonly="vm.vehicleinfo.iostate == '2'"  min="0" max="999" ng-model="vm.vehicleinfo.vehicletonnage" required/>
+					<div class="validate-info text-warning pull-left" ng-show="myForm.vehicletonnage.$invalid">
+	                    <i class="icon-warning-sign fa fa-warning"></i>
+	                </div>
+	                <div class="validate-info text-success pull-left" ng-show="!myForm.vehicletonnage.$invalid">
+	                    <i class="icon-ok fa fa-check"></i>
+	                </div>
+					<!-- <span class="help-block" ng-show="submitted && myForm.vehicletonnage.$error.required">请输入载重!</span>
+					<span class="help-block" ng-show="submitted && (myForm.vehicletonnage.$error.number || myForm.vehicletonnage.$error.min || myForm.vehicletonnage.$error.max)">输入的载重有误，载重范围为0-999！</span> -->
+					<div class="clearfix pull-left unit"><label  for="vehicletonnage">吨</label></div>
+					</div>
+				</div>
+				<div class="form-group park-input pull-left">
+					<label  for="card_id" class="sr-only">卡号</label>
+					<div class="input-group width-154">
+							<input type="text" class="form-control" placeholder="卡号" ng-model="vm.vehicleinfo.card_id" readonly="readonly"/>
+							<span class="input-group-btn"><button type="button" class="read-room btn btn-sky" ng-click="vm.getVehicleByCardno()">读卡</button></span>
+					</div>
+				</div>
+				<div class="form-group park-input pull-left">
+					<div class="row"><label  for="vehicleNum" class="sr-only">车位</label></div>
+					<div class="clearfix pull-left"><input type="text" class="form-control width-154" placeholder="车位" readonly="readonly" ng-model="vm.vehicleinfo.parkingno"/></div>
+				</div>
+				 <div class="form-group park-input pull-left">
+			        <label class="sr-only" for="placeOfDeparture">起始地</label>
+			        <div class="clearfix pull-left">
+			        <city-select class="input-inline width-154" id="startCity" ng-model="search.startCity" placeholder="起始地" postionClass="city-select-drop"></city-select>
+			        </div>
+			     </div>
+				<!-- <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
+					<div class="row"><label  for="vehicleNum" class="sr-only">目的地</label></div>
+					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 addr row">
+						<mk-city-picker open="params.open" placeholder="请选择城市" format="$0-$1-$2" ng-model="cityData" q="params.inputModel">
+						</mk-city-picker>
+					</div>
+				</div> -->
+				</div>
+				</div>
+				<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+				<div class="row">
+				<div class="form-group park-input pull-left">
+					<div class="row"><label  for="vehicleNum" class="sr-only">入园时间</label></div>
+					<div class="clearfix pull-left"><input type="text" class="form-control width-154" placeholder="入园时间" readonly="readonly" ng-model="vm.vehicleinfo.entrytime"/></div>
+				</div>
+				<div class="form-group park-input pull-left">
+					<div class="row"><label  for="vehicleNum" class="sr-only">出园时间</label></div>
+					<div class="clearfix pull-left"><input type="text" class="form-control width-154" placeholder="出园时间" readonly="readonly" ng-model="vm.vehicleinfo.outtime"/></div>
+				</div>
+				<div class="form-group park-input pull-left">
+					<div class="row"><label  for="vehicleNum" class="sr-only">停留时间</label></div>
+					<div class="clearfix pull-left"><input type="text" class="form-control width-154" placeholder="停留时间" readonly="readonly" ng-model="vm.vehicleinfo.stayhours"/></div>
+				</div>
+				<div class="form-group park-input pull-left">
+					<div class="row"><label  for="vehicleNum" class="sr-only">停车收费</label></div>
+					<div class="clearfix pull-left"><input type="number" class="form-control width-154" placeholder="停车收费" readonly="readonly" ng-model="vm.vehicleinfo.parkfees"/></div>
+					<div class="clearfix pull-left unit"><label  for="vehicleNum">元</label></div>
+				</div>
+				<div class="form-group park-input pull-left">
+					<div class="row"><label  for="vehicleNum" class="sr-only">过夜天数</label></div>
+					<div class="clearfix pull-left"><input type="number" class="form-control width-154" placeholder="过夜天数" readonly="readonly" ng-model="vm.vehicleinfo.nightdays"/></div>
+				</div>
+				<div class="form-group park-input pull-left">
+					<div class="row"><label  for="vehicleNum" class="sr-only">过夜费</label></div>
+					<div class="clearfix pull-left"><input type="number" class="form-control width-154" placeholder="过夜费" readonly="readonly" ng-model="vm.vehicleinfo.nightfees"/></div>
+					<div class="clearfix pull-left unit"><label  for="vehicleNum">元</label></div>
+				</div>
+				<div class="form-group park-input pull-left">
+					<div class="row"><label  for="vehicleNum" class="sr-only">入住房间</label></div>
+					<div class="clearfix pull-left"><input type="text" class="form-control width-154" placeholder="入住房间" readonly="readonly" ng-model="vm.vehicleinfo.roominfo"/></div>
+				</div>
+				<div class="form-group park-input pull-left">
+					<div class="row"><label  for="vehicleNum" class="sr-only">优惠天数</label></div>
+					<div class="clearfix pull-left"><input type="text" class="form-control width-154" placeholder="优惠天数" readonly="readonly" ng-model="vm.vehicleinfo.discountdays"/></div>
+				</div>
+				<div class="form-group park-input pull-left">
+					<div class="row"><label  for="vehicleNum" class="sr-only">优惠金额</label></div>
+					<div class="clearfix pull-left"><input type="number" class="form-control width-154" placeholder="优惠金额" readonly="readonly" ng-model="vm.vehicleinfo.freeamt"/></div>
+					<div class="clearfix pull-left unit"><label  for="vehicleNum">元</label></div>
+				</div>
+				<div class="form-group park-input pull-left">
+					<div class="row"><label  for="vehicleNum" class="sr-only">结算金额</label></div>
+					<div class="clearfix pull-left"><input type="number" class="form-control width-154" placeholder="结算金额" readonly="readonly" ng-model="vm.vehicleinfo.realamt"/></div>
+					<div class="clearfix pull-left unit"><label  for="vehicleNum">元</label></div>
+				</div>
+				</div>
+				</div>
+				<div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12 out-in-btn">
+					<div class="row">
+					<button type="submit" class="btn btn-sky width-94" ng-disabled="vm.vehicleinfo.iostate != '1' && inParkState != '0' "><span class="glyphicon glyphicon-log-in"></span>入园</button>
+					<button type="submit" class="btn btn-sky width-94 margin-12" ng-disabled="vm.vehicleinfo.iostate != '2' && outParkState != '0'"><span class="glyphicon glyphicon-list-alt"></span>结算</button>
+					<button type="button" ng-click="vm.reset()" class="btn btn-sky width-94 margin-12"><span class="glyphicon glyphicon-refresh"></span>重置</button>
+					</div>
+				</div>
+			</div>
+		</form>
+		</div>
+		<div class="clearfix"></div>
+		<div class="out-in-r">
+			<!-- <div class="out-in-video"></div> -->
+			<canvas id='videoCanvas' class="out-in-video"></canvas>
+			<div class="parking-mess pull-left">
+				<div class="catch-car-photo" placeholder="车牌照片"><canvas id="carPicBox" width="286" height="100" style="background-color: #ddd;"></canvas></div>
+				<div class="parking-num-box">
+					<div class="mess-text">
+						园内停车：<span class="parking-num pull-right">{{vm.enterParkSum}}</span>
+					</div>
+					<div class="mess-text">
+						空余车位：<span class="parking-num pull-right">{{vm.leisureParkingNum}}</span>
+					</div>
+					<div class="mess-text">
+						当日入园：<span class="parking-num pull-right">{{vm.dayenterParkSum}}</span>
+					</div>
+					<div class="mess-text">
+						当日出园：<span class="parking-num pull-right">{{vm.outParkSum}}</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<audio id="audioIn" controls="controls" ng-src="sound/ruyuanok.wav" ng-show="false"></audio>
+<audio id="audioOut" controls="controls" ng-src="sound/jiesuanok.wav" ng-show="false"></audio>
+<object  id="LODOP_OB" classid="clsid:2105C259-1E0C-4534-8141-A753534CB4CA" width=0 height=0>
+       <embed id="LODOP_EM" type="application/x-print-lodop" codebase="lodop.cab#version=6,1,9,8" width=0 height=0></embed>
+</object>

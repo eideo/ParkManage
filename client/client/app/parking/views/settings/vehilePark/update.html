@@ -1,0 +1,32 @@
+<div ng-controller="parkingadd as vm">
+<table class="table">
+    <thead>
+    <tr>
+        <th>
+            收件人姓名
+        </th>
+        <td>
+            {{address.name}}
+        </td>
+    </tr>
+    <tr>
+        <th>
+            收件地址
+        </th>
+        <td>
+            {{address.content}}
+        </td>
+        </tr>
+    <tr>
+        <th>
+            手机号
+        </th>
+        <td>
+            {{address.phone}}
+        </td>
+    </tr>
+    </thead>
+</table>
+<button type="button" class="btn btn-sky width-94 navbar-btn" ng-click="parkingsave()">确定</button>
+<button type="button" class="btn btn-sky width-94 navbar-btn" ng-click="Cancel()">取消</button>
+</div>

@@ -1,0 +1,39 @@
+<div ng-controller="vehileparkaddpark as vm">
+  <div class="light-box-title"><span class="text-white">新建停车场</span></div>
+  <form class="form-horizontal text-normal" name="myForm" autocomplete="off" ng-submit="vm.addpark()" novalidate>
+    <div class="form-group">
+      <label for="parkingmgcode" class="col-sm-3 control-label"><code>*</code>停车场编号</label>
+      <div class="col-sm-9" ng-class="{'has-error':myForm.submitted && myForm.parkingmgcode.$invalid}">
+        <input type="text" name="parkingmgcode" class="form-control width-154" ng-model="vm.jsondata.parkingmgcode" placeholder="类型编号" ng-minlength="1" ng-maxlength="10" required>
+        <span class="help-block" ng-show="myForm.submitted && myForm.parkingmgcode.$error.required">请输入1-10个字符的停车场编号！</span>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-3 control-label"><code>*</code>停车场名称</label>
+      <div class="col-sm-9" ng-class="{'has-error':myForm.submitted && myForm.parkname.$invalid}">
+        <input type="text" name="parkname" class="form-control width-154" ng-model="vm.jsondata.parkname" placeholder="车辆类型" ng-minlength="1" ng-maxlength="20" required>
+        <span class="help-block" ng-show="myForm.submitted && myForm.parkname.$error.required">请输入1-20个字符的停车场名称！</span>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-3 control-label"><code>*</code>实际车位</label>
+      <div class="col-sm-9" ng-class="{'has-error':myForm.submitted && myForm.realnum.$invalid}">
+        <input type="number" name="realnum" class="form-control width-154" ng-model="vm.jsondata.realnum" placeholder="实际停车位数" min="10" max="999" required>
+        <span class="help-block" ng-show="myForm.submitted && (myForm.realnum.$error.number || myForm.realnum.$error.min || myForm.realnum.$error.max)">输入的实际停车位数有误，载重范围为10-999！</span>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-3 control-label"><code>*</code>最大车位</label>
+      <div class="col-sm-9" ng-class="{'has-error':myForm.submitted && myForm.mastnum.$invalid}">
+        <input name="mastnum" type="number" class="form-control width-154" ng-model="vm.jsondata.mastnum" placeholder="车长" min="10" max="999" required>
+        <span class="help-block" ng-show="myForm.submitted && (myForm.mastnum.$error.number || myForm.mastnum.$error.min || myForm.mastnum.$error.max)">输入的最大车位有误，最大车位范围为10-999！</span>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="text-center">
+        <button type="submit" class="btn navbar-btn btn-sky width-94"><span class="glyphicon glyphicon-ok margin-4"></span>确定</button>
+        <button type="button" class="btn navbar-btn btn-default width-94" ng-click="vm.cancel()"><span class="glyphicon glyphicon-remove margin-4"></span>取消</button>
+      </div>
+    </div>
+  </form>
+</div>

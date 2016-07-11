@@ -1,0 +1,32 @@
+a:hover{text-decoration: none;}
+.parkset{width: 100%;margin-bottom: 140px;overflow: hidden;}
+.park-lot{width:98%;min-height:500px;margin:20px auto 30px;border:1px solid #cfcfcf;background:#fff;padding: 30px 1.7%;position: relative;overflow: visible; padding-bottom:80px;}
+.lot-num{position:relative;width: 128px;height:50px;line-height: 64px;color:#2c3846;font-size:14px;font-family: Microsoft YaHei;margin:12px 8px 0 0;position: relative;cursor: pointer;}
+.lot-add{width: 6.7%;height:54px;margin:10px 10px 0 0;border:1px dashed #9ab3cd;display:inline-block;background:url(/assets/images/lot-add.png) no-repeat center center;}
+.lot-add:hover{width: 6.7%;height:54px;margin:10px 10px 0 0;border:1px dashed #9ab3cd;display:inline-block;background:url(/assets/images/lot-added.png) no-repeat center center;}
+.set-close{z-index:100;background:url(/assets/images/set-close.png) no-repeat;width:16px;height: 16px;position: absolute;top:-8px;right: -4px;overflow: hidden;display: inline-block;}
+.set-close:hover{z-index:100;background:url(/assets/images/set-closed.png) no-repeat;width:16px;height: 16px;position: absolute;top:-8px;right: -4px;overflow: hidden;display: inline-block;}
+.set-state{width: 47px;height: 28px;display: inline-block;margin:0 5px 0 10px;}
+.park-state{overflow: hidden;position: absolute;right:40px;bottom:27px;height: 28px;line-height: 28px;font-family: Microsoft YaHei; }
+.setbtn-close{background:url(/assets/images/setbtn-close.png) no-repeat;width:13px;height: 12px;position: absolute;top:15px;right: 4px;overflow: hidden;display: inline-block;}
+.setbtn-close:hover{background:url(/assets/images/setbtn-closed.png) no-repeat;width:13px;height: 12px;position: absolute;top:15px;right: 4px;overflow: hidden;display: inline-block;}
+.lotbtn-add{width:28px;height:28px;display:inline-block;background:url(/assets/images/lot-add.png) no-repeat;}
+.lotbtn-add:hover{width:28px;height:28px;display:inline-block;background:url(/assets/images/lot-added.png) no-repeat;}
+.lot-btns{overflow:hidden;margin:0 0 35px 30%;position: absolute;bottom: -107px;}
+.lot-btns-active{overflow: hidden;width:125px;height: 72px;background:url(/assets/images/lotbtns-arrow.png) no-repeat center top;}
+.lotset-all{overflow: hidden;width:125px;height: 72px;padding-top: 30px;}
+.lot-explain{color:#e40101;margin-top: 20px;font-size:14px;font-family: Microsoft YaHei;}
+.nav_car{background: #dddddd;width: 100%;padding:6px 0 0 8px;height: 42px;border-bottom: 1px solid #cbcbcb;}
+.car_add{float:left;overflow:hidden;width: 64px;height: 30px;border:1px dashed #6ea8e8; color:#6ea8e8 !important; font-size: 24px;font-weight: bold;text-align: center;line-height: 22px;background: #fff;margin:4px 0 0 4px;transition:all 0.3s;}
+.car_add:hover{border:1px solid #6ea8e8;color: #fff !important;background: #6ea8e8;}
+.car_nav_ul{float: left;}
+.car_nav_kind{float: right;color: #2c3846;font-size: 12px;font-family: Microsoft YaHei;font-weight: bold;margin:8px 27px 0 0;}
+.car_nav_txt{float: left;margin:1px 0 0 5px;}
+.car-main-add{width: 128px;height:50px;line-height: 28px;color: #6ea8e8;border:1px dashed #6ea8e8;font-size: 24px;font-weight: bold;text-align: center;margin:12px 8px 0 0;background: #fff; transition: all 0.3s;}
+.car-main-add:hover{line-height: 28px;color: #fff;border:1px solid #6ea8e8;font-size: 24px;font-weight: bold;text-align: center;background: #6ea8e8;}
+.empty{background: #fff;border: 1px solid #69a7eb;}
+.parked{background: #86C3FF;border: 1px solid #69a7eb;}
+.car-nav-kind1{width: 12px;height: 12px;float: left;display: inline-block;margin-top: 4px;}
+.empty-dirty{background: #FFB6B6;border: 1px solid #f65551;}
+.no-use{background: #9a9a9a;border: 1px solid #6d6d6d;}
+.car-room-all{overflow: auto;float: left;padding-left: 20px;position:absolute; top:42px; bottom:0;}

@@ -1,0 +1,40 @@
+<div class="parkset" ng-controller="vehileparklist as vm">
+    <div class="park-lot">
+        <div class="clearfix">
+            <div ng-repeat="p in vm.parkinglotlist">
+                <div class="lot-num text-center pull-left park-orange" ng-mouseover="p.show=1" ng-mouseleave="p.show=2"
+                     ng-class="{'park-orange' : '2' == p.parkingstatus, 'park-gray' : '2' != p.parkingstatus}">
+                    {{p.parkingno}}
+                    <div ng-show="p.parkingstatus != 2">
+                    <button class="set-close"
+                            ng-show="p.show==1"
+                            ng-click="vm.clickToDeleteSeat(p)"></button>
+                    </div>
+                </div>
+            </div>
+            <button class="lot-add" ng-click="vm.clickToAddSeat()"></button>
+        </div>
+        <div class="lot-btns">
+            <div class="clearfix">
+                <div class="pull-left" ng-repeat="c in vm.carparkinglist">
+                    <div class="pull-left lotset-all margin-12 margin-12"
+                         ng-class="{'lot-btns-active': vm.parking.id == c.id}">
+                        <a class="text-center"
+                           ng-class="{'set-btn2': vm.parking.id != c.id, 'set-btn1': vm.parking.id == c.id}"
+                           ng-click="vm.activepark(c)">{{c.parkname}}
+                            <button class="setbtn-close" ng-show="vm.parking.id != c.id"
+                                    ng-click="vm.clickToDeletePark(c)"></button>
+                        </a>
+                    </div>
+                </div>
+                <div class="margin-24 margin-36 pull-left">
+                    <button class="lotbtn-add" ng-click="vm.clickToAddPark()"></button>
+                </div>
+            </div>
+            <!-- <div class="lot-explain">如果车位状态为占用，则不能删除车位</div> -->
+        </div>
+        <div class="park-state"><span class="pull-left">车位状态：</span><span
+                class="pull-left set-state park-orange"></span><span class="pull-left">已停车</span><span
+                class="pull-left set-state park-gray"></span><span class="pull-left">空闲</span></div>
+    </div>
+</div>

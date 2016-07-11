@@ -1,0 +1,30 @@
+.out-in{overflow:visible;width: 100%;}
+.out-in-main{margin: 4px 10px;overflow: visible;}
+.out-in-l{}
+.out-in-btn{margin-left:-4px; margin-bottom:6px !important;}
+.out-h{font-size:20px;font-family: Microsoft YaHei;color: #000;font-weight: bold;margin: 20px 0 30px 20px;}
+.out-in-con{}
+.out-in-r{border-top:1px solid #d2d2d2;padding-top:10px;}
+.parking-mess{width: 296px; padding-right:10px; margin: 0 auto; overflow: hidden;}
+.mess-text{font-size: 14px; color: #000;margin: 14px 0 14px;}
+.parking-num{font-size: 18px;font-family: Microsoft YaHei;color: #f46618;font-weight: bold;width: 44px;display: inline-block; text-align: right;}
+.out-in-video{width: calc(100% - 296px); margin: 0 auto;background: #333; transition: all 0.3s;}
+.chepai{padding:0 !important;}
+.unit{margin-left:8px !important; line-height:30px;}
+.read-room{width: 40px !important; min-width:42px !important; margin:0 0 !important;}
+.out-in-con label{font-weight: normal;font-family: Microsoft YaHei;}
+.out-in-con button{font-family: Microsoft YaHei;}
+.mudi{margin-left: -20px;}
+.width-154 input,.width-154 button{height:30px; margin-bottom: 4px;}
+.addr{width: 378px;text-align: center;}
+.parking-tishi{color: #a94442;font-family: Microsoft YaHei;font-size: 19px;}
+.vc-main.opened{box-shadow: none !important;}
+.park-input{width: 50%; margin-bottom:6px !important;}
+.catch-car-photo{width:286px;height:100px; background:#eee; border:1px solid #ddd; overflow:hidden;}
+.parking-num-box{width:220px; margin:0 auto;}
+@media screen and (min-width:1025px){
+	.out-in-video{width: calc(70%); margin: 0 auto;background: #666;}
+}
+@media screen and (min-width:1366px){
+	.out-in-video{width: calc(64%); margin: 0 auto;background: #666;}
+}

@@ -9,13 +9,8 @@ angular.module('lptApp', [
   'ui.bootstrap',
   'flow',
   'w5c.validator',
-  'opCenterApp',
   'parkingApp',
-  'roomManageApp',
   'commonApp',
-  'orderFormApp',
-  'logisInfoApp',
-  'logisSiteApp',
   'ui.bootstrap.datetimepicker'
 ])
   .config(function($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider,$tooltipProvider, ngDialogProvider) {
@@ -36,33 +31,34 @@ angular.module('lptApp', [
       placement: 'right',  
       animation: true,  
       popupDelay: 0,  
-      appendToBody: false  
-    });     
-
-    $httpProvider.interceptors.push(function() {
-      return {
-        request: function(config) {
-          if (config.url.indexOf(lmp_host) >= 0) {
-            if (config.method == "GET") {
-              if (user && user.permissions.parkid) {
-                if (!config.params)
-                  config.params = {};
-                if (config.params.datasource == undefined) {
-                  config.params.datasource = user.permissions.parkid;
-                }
-              }
-            }
-            if (config.method == "POST") {
-              if (config.data && config.data.datasource == undefined && user && user.permissions.parkid) {
-                config.data.datasource = user.permissions.parkid;
-              }
-            }
-          }
-          return config;
-        }
-      };
-    });
-  })
+      appendToBody: false
+    })
+})
+    // $httpProvider.interceptors.push(function() {
+    //   return {
+    //     request: function(config) {
+    //       if (config.url.indexOf(lmp_host) >= 0) {
+    //         if (config.method == "GET") {
+    //           if (user && user.permissions.parkid) {
+    //             if (!config.params)
+    //               config.params = {};
+    //             if (config.params.datasource == undefined) {
+    //               config.params.datasource = user.permissions.parkid;
+    //             }
+    //           }
+    //         }
+    //         if (config.method == "POST") {
+    //           if (config.data && config.data.datasource == undefined && user && user.permissions.parkid) {
+    //             config.data.datasource = user.permissions.parkid;
+    //           }
+    //         }
+    //       }
+    //       return config;
+    //     }
+    //   };
+    // }
+    // );
+  
   .directive('whenScrolled', function() { 
     return function(scope, elm, attr) { 
       var raw = elm[0]; 

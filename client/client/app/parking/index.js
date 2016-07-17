@@ -12,7 +12,6 @@ angular.module('parkingApp', [
     'ui.router',
     'ui.bootstrap',
     'ngDialog',
-    'ngCityPicker',
     'tm.pagination',
     'flow',
     'ngNotify',

@@ -3,18 +3,18 @@
  */
 
 'use strict';
-if (!window.user) {
-  window.user = userService.getUser();
-  if (!window.user) {
-    window.location.href = '/app/common/views/login.html';
-  } else if (window.user.username != 'admin') {
-    if (!window.user.permissions
-      || !window.user.permissions.application
-      || window.user.permissions.application.length == 0) {
-      window.location.href = '/app/common/views/unAudit.html';
-    }
-  }
-}
+// if (!window.user) {
+//   window.user = userService.getUser();
+//   if (!window.user) {
+//     window.location.href = '/app/common/views/login.html';
+//   } else if (window.user.username != 'admin') {
+//     if (!window.user.permissions
+//       || !window.user.permissions.application
+//       || window.user.permissions.application.length == 0) {
+//       window.location.href = '/app/common/views/unAudit.html';
+//     }
+//   }
+// }
 
 angular.module('commonApp', [
   'ngCookies',
@@ -23,22 +23,9 @@ angular.module('commonApp', [
   'ui.router'
 ])
   .run(['$rootScope', '$filter', '$location', '$timeout', 'systemAppService', function($rootScope, $filter, $location, $timeout, systemAppService) {
-    // 系统初始化
-    systemAppService.baseService.parkInfo = window.parkInfo;
-    systemAppService.baseService.initParkInfo();
-    $rootScope.$on('baseService.park.init', function() {
-      if (systemAppService.baseService.parkInfo && systemAppService.baseService.parkInfo.parkid) {
-        systemAppService.baseService.initDept();
-        systemAppService.baseService.iniRole();
-        $rootScope.$on('baseService.role.init', function() {
-          systemAppService.baseService.initSuperUser();
-        });
-      }
-    });
 
     // 加载当前登录用户
     $rootScope.user = window.user;
-    $rootScope.parkInfo = window.parkInfo;
     systemAppService.userService.userInfo = window.user;
 
     $timeout(function() {
@@ -48,7 +35,7 @@ angular.module('commonApp', [
         var orderBy = $filter('orderBy');
         var app = orderBy(systemAppService.userService.userInfo.permissions.application, 'apporder', false)[0];
 
-        if (app && app.applicationname != '运营中心') {
+        if (app && app.applicationname != '停车管理') {
           var menus = [];
           var menu = {};
           for (var n in systemAppService.userService.userInfo.permissions.menu) {
@@ -67,28 +54,15 @@ angular.module('commonApp', [
             $location.path(url);
           }
         } else {
-          $location.path('/opCenter');
+          $location.path('/parking');
         }
       } else {
-        $location.path('/opCenter');
+        $location.path('/parking');
       }
     //            $rootScope.$on('appService.apps.load', function (event) {
     //                systemAppService.menuService.getMenuList();
     //            });
     });
 
-    var ws = new WebSocket('ws://' + window.lmp_host.replace('http://', '') + '/mplatform/webSocketServer');
-    // var ws = new WebSocket('ws://192.168.1.54:8080/mplatform/webSocketServer?userid=' + user.userid);
-    ws.onopen = function() {
-      window.console.log('状态信息: 连接打开.' + new Date());
-    };
-    ws.onmessage = function(event) {
-      window.console.log('收到: ' + event.data);
-      $rootScope.$broadcast('baseService.message.new');
-    //这里接收到消息之后处理逻辑代码
-    };
-    ws.onclose = function(event) {
-      window.console.log('状态信息: 连接关闭.' + new Date());
-      window.console.log(event);
-    };
+
   }]);

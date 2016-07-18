@@ -13,9 +13,7 @@ angular.module('parkingApp', [
     'ui.bootstrap',
     'ngDialog',
     'tm.pagination',
-    'flow',
     'ngNotify',
-    'w5c.validator',
     'commonApp',
     'ngVehicleNum'
 ])
@@ -93,7 +91,7 @@ angular.module('parkingApp', [
 
 //        $urlRouterProvider.otherwise('');
     }])
-    .run(['$rootScope', '$filter', 'parkingRoutes', 'systemAppService', function ($rootScope, $filter, parkingRoutes, systemAppService) {
+    .run(['$rootScope', '$filter', 'parkingRoutes', function ($rootScope, $filter, parkingRoutes) {
         /**
          * 应用模块第一次加载的时候，进行应用和菜单的注册
          */
@@ -122,29 +120,10 @@ angular.module('parkingApp', [
                         applicationid: app.applicationid,//所属应用ID
                         applicationname: app.applicationname
                     };
-                    systemAppService.menuService.registerMenu(rootMenuModel, function (rootMenu) {
-                        if (menu.childMenus.length > 0) {
-                            for (var c in menu.childMenus) {
-                                var childMenu = menu.childMenus[c];
-                                var menuModel = {
-                                    menuid: '',//菜单ID（修改时为必填
-                                    menuname: childMenu.menu,//菜单名称
-                                    pmenuid: rootMenu.menuid,//上级菜单ID
-                                    menuurl: childMenu.url,//菜单页面链接
-                                    menuorder: '',//菜单排序
-                                    menudesc: childMenu.templateUrl,//菜单描述
-                                    menuparam: childMenu.name,
-                                    status: 1, //菜单状态
-                                    applicationid: app.applicationid,//所属应用ID
-                                    applicationname: app.applicationname
-                                };
-                                systemAppService.menuService.registerMenu(menuModel);
-                            }
-                        }
-                    });
+
                 }
             };
-            systemAppService.appService.registerApp(appModel, initMenus);
+
         });
 
         /**
@@ -153,26 +132,10 @@ angular.module('parkingApp', [
         (function () {
             var currentAppModule = null;
             $rootScope.parkingMenus = [];
-            // 获取本应用模块
-            systemAppService.appService.getAppByName('停车管理').then(function (response) {
-                if (response.data && response.data.code == "200") {
-                    currentAppModule = response.data.body.data[0];
-                    if (currentAppModule && currentAppModule.status == "1") {
-                        loadAppModule();
-                    }
-                }
-            });
 
             var loadAppModule = function () {
                 var currentAppMenus = [];
                 // 获取本应用模块菜单
-                systemAppService.menuService.getMenusByAppId(currentAppModule.applicationid, function (data) {
-                    if (data && data.length > 0) {
-                        currentAppMenus = data;
-                        loadAppMenus();
-                    }
-                });
-
                 var loadAppMenus = function () {
                     var menu, n;
                     for (n in currentAppMenus) {

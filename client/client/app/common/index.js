@@ -22,47 +22,47 @@ angular.module('commonApp', [
   'ngSanitize',
   'ui.router'
 ])
-  .run(['$rootScope', '$filter', '$location', '$timeout', 'systemAppService', function($rootScope, $filter, $location, $timeout, systemAppService) {
+  .run(['$rootScope', '$filter', '$location', '$timeout', function($rootScope, $filter, $location, $timeout) {
 
     // 加载当前登录用户
     $rootScope.user = window.user;
-    systemAppService.userService.userInfo = window.user;
+    // systemAppService.userService.userInfo = window.user;
 
-    $timeout(function() {
-      systemAppService.appService.getAppList();
-      systemAppService.dictService.getDicts();
-      if (systemAppService.userService.userInfo&&systemAppService.userService.userInfo.username!='admin') {
-        var orderBy = $filter('orderBy');
-        var app = orderBy(systemAppService.userService.userInfo.permissions.application, 'apporder', false)[0];
-
-        if (app && app.applicationname != '停车管理') {
-          var menus = [];
-          var menu = {};
-          for (var n in systemAppService.userService.userInfo.permissions.menu) {
-            menu = systemAppService.userService.userInfo.permissions.menu[n];
-            if (menu.applicationid == app.applicationid) {
-              menus.push(menu);
-            }
-          }
-          menu = orderBy(menus, 'menuorder', false)[0];
-          if (menu) {
-            var params = menu.menuparam.split('.');
-            var url = '';
-            for (var n in params) {
-              url += '/' + params[n];
-            }
-            $location.path(url);
-          }
-        } else {
-          $location.path('/parking');
-        }
-      } else {
-        $location.path('/parking');
-      }
-    //            $rootScope.$on('appService.apps.load', function (event) {
-    //                systemAppService.menuService.getMenuList();
-    //            });
-    });
+    // $timeout(function() {
+    //   systemAppService.appService.getAppList();
+    //   systemAppService.dictService.getDicts();
+    //   if (systemAppService.userService.userInfo&&systemAppService.userService.userInfo.username!='admin') {
+    //     var orderBy = $filter('orderBy');
+    //     var app = orderBy(systemAppService.userService.userInfo.permissions.application, 'apporder', false)[0];
+    //
+    //     if (app && app.applicationname != '停车管理') {
+    //       var menus = [];
+    //       var menu = {};
+    //       for (var n in systemAppService.userService.userInfo.permissions.menu) {
+    //         menu = systemAppService.userService.userInfo.permissions.menu[n];
+    //         if (menu.applicationid == app.applicationid) {
+    //           menus.push(menu);
+    //         }
+    //       }
+    //       menu = orderBy(menus, 'menuorder', false)[0];
+    //       if (menu) {
+    //         var params = menu.menuparam.split('.');
+    //         var url = '';
+    //         for (var n in params) {
+    //           url += '/' + params[n];
+    //         }
+    //         $location.path(url);
+    //       }
+    //     } else {
+    //       $location.path('/parking');
+    //     }
+    //   } else {
+    //     $location.path('/parking');
+    //   }
+    // //            $rootScope.$on('appService.apps.load', function (event) {
+    // //                systemAppService.menuService.getMenuList();
+    // //            });
+    // });
 
 
   }]);

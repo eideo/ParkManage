@@ -2,20 +2,20 @@
 <div class="left-nav">
   <ul class="left-nav-box" ng-controller="parkingIndexCtrl">
    <li class="left-nav-menu-title"><i class="fa fa-list"></i> 菜单列表</li>
-   <li  ng-class="{'left-nav-active': isActive(nav.href)}"><a href="" ui-sref=".{{nav.name}}"><i class="icon-chevron-right"></i>车辆出入</a></li>
+   <li  ng-class="{'left-nav-active': isActive(nav.href)}"><a href="" ui-sref=".outIn"><i class="icon-chevron-right"></i>车辆出入</a></li>
 
-   <li  ng-class="{'left-nav-active': isActive(nav.href)}"><a href="" ui-sref=".{{nav.name}}"><i class="icon-chevron-right"></i>车位设置</a></li>
+   <li  ng-class="{'left-nav-active': isActive(nav.href)}"><a href="" ui-sref=".vehilePark"><i class="icon-chevron-right"></i>车位设置</a></li>
 
-   <li  ng-class="{'left-nav-active': isActive(nav.href)}"><a href="" ui-sref=".{{nav.name}}"><i class="icon-chevron-right"></i>车辆类型</a></li>
+   <li  ng-class="{'left-nav-active': isActive(nav.href)}"><a href="" ui-sref=".vehicleType"><i class="icon-chevron-right"></i>车辆类型</a></li>
 
-   <li  ng-class="{'left-nav-active': isActive(nav.href)}"><a href="" ui-sref=".{{nav.name}}"><i class="icon-chevron-right"></i>在原车辆</a></li>
+   <li  ng-class="{'left-nav-active': isActive(nav.href)}"><a href="" ui-sref=".searchcar"><i class="icon-chevron-right"></i>在园车辆</a></li>
 
-   <li  ng-class="{'left-nav-active': isActive(nav.href)}"><a href="" ui-sref=".{{nav.name}}"><i class="icon-chevron-right"></i>收费标准</a></li>
+   <li  ng-class="{'left-nav-active': isActive(nav.href)}"><a href="" ui-sref=".feeScale"><i class="icon-chevron-right"></i>收费标准</a></li>
 
-   <li  ng-class="{'left-nav-active': isActive(nav.href)}"><a href="" ui-sref=".{{nav.name}}"><i class="icon-chevron-right"></i>停车优惠</a></li>
+   <li  ng-class="{'left-nav-active': isActive(nav.href)}"><a href="" ui-sref=".preferential"><i class="icon-chevron-right"></i>停车优惠</a></li>
 
-   <li  ng-class="{'left-nav-active': isActive(nav.href)}"><a href="" ui-sref=".{{nav.name}}"><i class="icon-chevron-right"></i>上班下班</a></li>
+   <li  ng-class="{'left-nav-active': isActive(nav.href)}"><a href="" ui-sref=".commute"><i class="icon-chevron-right"></i>上班下班</a></li>
   </ul>
-</div>	
+</div>
 <div id="right-content" class="right-content" ui-view></div>
 <!--<div ng-include="'components/navbar/navbar.html'"></div>-->

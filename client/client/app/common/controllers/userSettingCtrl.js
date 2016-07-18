@@ -4,7 +4,7 @@
 'use strict';
 
 var commonApp = angular.module('commonApp');
-commonApp.controller('userSettingCtrl', ['$scope', '$location', 'systemAppService', function ($scope, $location, systemAppService) {
+commonApp.controller('userSettingCtrl', ['$scope', '$location', function ($scope, $location) {
     var vm = this;
     vm.activeMenu = 1;
 }]);

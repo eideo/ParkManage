@@ -7,8 +7,6 @@ angular.module('lptApp', [
   'ngAnimate',
   'ui.router',
   'ui.bootstrap',
-  'flow',
-  'w5c.validator',
   'parkingApp',
   'commonApp',
   'ui.bootstrap.datetimepicker'
@@ -27,10 +25,10 @@ angular.module('lptApp', [
       closeByEscape: true
     });
 
-     $tooltipProvider.options({  
-      placement: 'right',  
-      animation: true,  
-      popupDelay: 0,  
+     $tooltipProvider.options({
+      placement: 'right',
+      animation: true,
+      popupDelay: 0,
       appendToBody: false
     })
 })
@@ -58,16 +56,16 @@ angular.module('lptApp', [
     //   };
     // }
     // );
-  
-  .directive('whenScrolled', function() { 
-    return function(scope, elm, attr) { 
-      var raw = elm[0]; 
-      elm.bind('scroll', function() { 
-        if (raw.scrollTop+raw.offsetHeight >= raw.scrollHeight) { 
-          scope.$apply(attr.whenScrolled); 
-        } 
-      }); 
-    }; 
+
+  .directive('whenScrolled', function() {
+    return function(scope, elm, attr) {
+      var raw = elm[0];
+      elm.bind('scroll', function() {
+        if (raw.scrollTop+raw.offsetHeight >= raw.scrollHeight) {
+          scope.$apply(attr.whenScrolled);
+        }
+      });
+    };
   });
 // .run(function($rootScope, $location, systemAppService) {
 //   //        $rootScope.user = window.user;

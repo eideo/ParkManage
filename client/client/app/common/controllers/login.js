@@ -4,20 +4,13 @@
 'use strict';
 
 var commonApp = angular.module('commonApp');
-commonApp.controller('loginCtrl', ['$scope', '$location', 'systemAppService', function ($scope, $location, systemAppService) {
+commonApp.controller('loginCtrl', ['$scope', '$location', function ($scope, $location) {
     var vm = this;
     vm.username = 'liwow';
     vm.password = '123456';
     vm.error = '';
 
     $scope.login = function () {
-        systemAppService.userService.userLogin(vm.username, vm.password, function (data) {
-            if (angular.isObject(data)) {
-                $location.path('/');
-            }
-            else {
-                vm.error = data;
-            }
-        });
+
     }
 }]);

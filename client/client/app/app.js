@@ -7,14 +7,15 @@ angular.module('lptApp', [
   'ngAnimate',
   'ui.router',
   'ui.bootstrap',
+  'ngSails',
   'parkingApp',
   'commonApp',
   'ui.bootstrap.datetimepicker'
 ])
-  .config(function($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider,$tooltipProvider, ngDialogProvider) {
+  .config(function($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider,$tooltipProvider, ngDialogProvider,$sailsProvider) {
     //        $urlRouterProvider
     //            .otherwise('/opCenter');
-
+    $sailsProvider.url ='http://localhost:1303';
     $locationProvider.html5Mode(true);
 
     ngDialogProvider.setDefaults({

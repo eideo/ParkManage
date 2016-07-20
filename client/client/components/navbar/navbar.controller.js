@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('lptApp')
-  .controller('navbarCtrl', function($rootScope, $scope, $location, $filter, $timeout, systemAppService) {
+  .controller('navbarCtrl', function($rootScope, $scope, $location, $filter, $timeout) {
     $scope.isActive = function(route) {
       var routes = $location.path().split('/').slice(1);
       if (routes.length > 1) {
@@ -38,16 +38,7 @@ angular.module('lptApp')
     }
 
     $scope.getAppMenus = function() {
-      if (systemAppService.appService.apps && systemAppService.appService.apps.length > 0) {
-        for (var n in systemAppService.appService.apps) {
-          var app = systemAppService.appService.apps[n];
-          $rootScope.menus.push({
-            'title': app.applicationname,
-            'link': app.appurl,
-            'icon': app.appicon
-          });
-        }
-      }
+
     }
 
     $rootScope.menus = [];
@@ -98,7 +89,7 @@ angular.module('lptApp')
       $rootScope.mainContentHeight = rightContent.height();
       $rootScope.mainContentWidth = rightContent.width();
 
-      
+
       var gridSearch = 0;
       if($('#grid-search').height()){
         gridSearch = $('#grid-search').height();

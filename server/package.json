@@ -12,7 +12,6 @@
     "rc": "1.0.1",
     "sails": "~0.12.3",
     "sails-disk": "~0.10.9",
-    "sails-hook-validate": "^1.0.3",
     "sails-mysql": "^0.12.1",
     "slash": "^1.0.0",
     "waterline-mssql": "^1.0.6"

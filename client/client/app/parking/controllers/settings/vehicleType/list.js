@@ -15,14 +15,14 @@ app.controller('vehicletypelist',['$scope','$http','dialog','$sails',function ($
     };
 
 
-  $scope.vehicletypelist = [];
+  vm.vehicletypelist = [];
 
   vm.queryData = {
     page: 1,
     rows: 10
   };
 
-  $scope.getvehicletypelist = function(){
+  vm.getvehicletypelist = function(){
     // vm.queryData.page = $scope.paginationConf.currentPage;
     //     if (vm.queryData.page <= 0) {
     //         vm.queryData.page = 1;
@@ -30,7 +30,7 @@ app.controller('vehicletypelist',['$scope','$http','dialog','$sails',function ($
 
     $sails.get("/pcartype")
             .success(function (data) {
-                $scope.vehicletypelist = data.body;
+                vm.vehicletypelist = data;
             })
             .error(function (data) {
               alert('error');
@@ -50,6 +50,7 @@ app.controller('vehicletypelist',['$scope','$http','dialog','$sails',function ($
 
   vm.clickToAdd = function () {
     $scope.vehicletype = null;
+    $scope.status = "新建";
     dialog.open({
       template : 'app/parking/views/settings/vehicleType/update.html',
       scope : $scope,//将scope传给test.html,以便显示地址详细信息
@@ -58,7 +59,7 @@ app.controller('vehicletypelist',['$scope','$http','dialog','$sails',function ($
         //   return true;
         // }
         // return false;
-        if(data != null && data.code=="200"){
+        if(data != null){
           vm.getvehicletypelist();
           dialog.notify('添加成功！', 'success');
         }
@@ -68,6 +69,7 @@ app.controller('vehicletypelist',['$scope','$http','dialog','$sails',function ($
 
   vm.clickToEdit = function (vehicletype) {
     $scope.vehicletype = vehicletype;
+    $scope.status = "编辑";
     dialog.open({
       template : 'app/parking/views/settings/vehicleType/update.html',
       scope : $scope,//将scope传给test.html,以便显示地址详细信息
@@ -76,7 +78,7 @@ app.controller('vehicletypelist',['$scope','$http','dialog','$sails',function ($
         //   return true;
         // }
         // return false;
-        if(data != null && data.code=="200"){
+        if(data != null ){
           vm.getvehicletypelist();
           dialog.notify('编辑成功！', 'success');
         }
@@ -87,15 +89,13 @@ app.controller('vehicletypelist',['$scope','$http','dialog','$sails',function ($
   vm.clickToDelete = function (vehicletype) {
     dialog.confirmDialog('确认是否要删除[' + vehicletype.cartype + ']?').then(function (data) {
       if (data) {
-        $http.delete(lpt_host + '/zeus/ws/parking/pcartype/delete/' + vehicletype.id)
-        .success(function(data){
-          if(data != null && data.code=="200"){
-            vm.getvehicletypelist();
+        $sails.delete("/pcartype/" + vehicletype.id)
+        .success(function (data) {
+          vm.getvehicletypelist();
             dialog.notify('删除成功！', 'success');
-          }
-          else{
-            dialog.notify(response.data.msg, 'error');
-          }
+        })
+        .error(function (data) {
+          alert('error');
         });
       }
     });
@@ -104,5 +104,5 @@ app.controller('vehicletypelist',['$scope','$http','dialog','$sails',function ($
   //初始化查询
   // vm.getvehicletypelist();
   // 通过$watch currentPage和itemperPage 当他们一变化的时候，重新获取数据条目
-  $scope.$watch('paginationConf.currentPage', $scope.getvehicletypelist);
+  $scope.$watch('paginationConf.currentPage', vm.getvehicletypelist);
 }]);

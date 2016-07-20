@@ -7,6 +7,7 @@ angular.module('lptApp', [
   'ngAnimate',
   'ui.router',
   'ui.bootstrap',
+  'w5c.validator',
   'ngSails',
   'parkingApp',
   'commonApp',

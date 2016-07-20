@@ -1,15 +1,14 @@
 'use strict';
 
-app.controller('vehileparkaddpark',['$scope','$http', 'dialog',function ($scope, $http, dialog) {
+app.controller('vehileparkaddpark',['$scope','$http', 'dialog','$sails',function ($scope, $http, dialog,$sails) {
   var vm = this;
 
   vm.jsondata = {
-    parkingmgcode:"",  //停车场编码 
+    parkingmgcode:"",  //停车场编码
     parkname:"",          //停车场名称
     realnum:0,            //实际停车位数
     mastnum:0,            //最大车位数
-    parkingsort:0,        //停车场顺序
-    datasource:"1"        //数据来源
+    parkingsort:0        //停车场顺序
     // remark:"",         //备注
     // create_by:"admin",     //创建人
     // create_name:"admin",   //创建人名称
@@ -18,7 +17,7 @@ app.controller('vehileparkaddpark',['$scope','$http', 'dialog',function ($scope,
   };
   vm.addpark = function(){
     if($scope.myForm.$valid){
-      $http.post(lpt_host + '/zeus/ws/parking/pparkingmg/saveorupdate', vm.jsondata)
+      $sails.post("/pparkingmg", vm.jsondata)
       .success(function(data){
         // alert("添加成功!");
         $scope.closeThisDialog(data);

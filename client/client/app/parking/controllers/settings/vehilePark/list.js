@@ -2,7 +2,7 @@
 
 var app=angular.module('parkingApp');
 
-app.controller('vehileparklist',['$scope','$http','dialog',function ($scope, $http, dialog) {
+app.controller('vehileparklist',['$scope','$http','dialog','$sails',function ($scope, $http, dialog,$sails) {
   var vm = this;
 
   vm.carparkinglist = [];
@@ -10,10 +10,11 @@ app.controller('vehileparklist',['$scope','$http','dialog',function ($scope, $ht
 
   //停车场查询
   vm.getCarParkList = function(){
-    $http.get(lpt_host + '/zeus/ws/parking/pparkingmg/getlist',{ params: {page:'1',rows:'999'}}).success(function(data) {
-      if(data.code == "200"){
-        vm.carparkinglist = data.body.data;
-        vm.parking = data.body.data[0];
+   $sails.get("/pparkingmg")
+    .success(function(data) {
+      if(data){
+        vm.carparkinglist = data;
+        vm.parking = data[0];
         vm.getParkinglotlist(vm.parking.id);
       }
     });
@@ -21,15 +22,15 @@ app.controller('vehileparklist',['$scope','$http','dialog',function ($scope, $ht
 
   //添加停车场
   vm.clickToAddPark = function () {
-    dialog.open({ 
+    dialog.open({
       template : 'app/parking/views/settings/vehilePark/addPark.html',
-      scope : $scope,//将scope传给test.html,以便显示地址详细信息  
+      scope : $scope,//将scope传给test.html,以便显示地址详细信息
       preCloseCallback : function(data) {
         // if(confirm('Are you sure you want to close without saving your changes?')) {
         //   return true;
         // }
         // return false;
-        if(data!=null && data.code == "200"){
+        if(data!=null){
           vm.getCarParkList();
         }
       }
@@ -66,7 +67,7 @@ app.controller('vehileparklist',['$scope','$http','dialog',function ($scope, $ht
         //     if(data.body[row] != null){
         //       gp.data.push(data.body[row]);
         //     }
-            
+
         //     row++;
         //   };
         //   vm.parkinglotlist.push(gp);
@@ -79,9 +80,9 @@ app.controller('vehileparklist',['$scope','$http','dialog',function ($scope, $ht
   //添加车位
   vm.clickToAddSeat = function () {
     $scope.carparking = vm.parking;
-    dialog.open({ 
+    dialog.open({
       template : 'app/parking/views/settings/vehilePark/addSeat.html',
-      scope : $scope,//将scope传给test.html,以便显示地址详细信息  
+      scope : $scope,//将scope传给test.html,以便显示地址详细信息
       preCloseCallback : function(data) {
         // if(confirm('Are you sure you want to close without saving your changes?')) {
         //   return true;
@@ -111,9 +112,9 @@ app.controller('vehileparklist',['$scope','$http','dialog',function ($scope, $ht
 
 
   // vm.clickToEditSeat = function () {
-  //   dialog.open({ 
+  //   dialog.open({
   //     template : 'app/parking/views/settings/vehilepark/update.html',
-  //     scope : $scope,//将scope传给test.html,以便显示地址详细信息  
+  //     scope : $scope,//将scope传给test.html,以便显示地址详细信息
   //     preCloseCallback : function(data) {
   //       // if(confirm('Are you sure you want to close without saving your changes?')) {
   //       //   return true;

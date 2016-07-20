@@ -14,6 +14,7 @@ angular.module('parkingApp', [
     'ngDialog',
     'tm.pagination',
     'ngNotify',
+    'w5c.validator',
     'commonApp',
     'ngVehicleNum'
 ])

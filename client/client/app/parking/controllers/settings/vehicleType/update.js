@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('vehicletypeupdate',['$scope','$http', 'dialog',function ($scope, $http, dialog) {
+app.controller('vehicletypeupdate',['$scope','$http', 'dialog','$sails',function ($scope, $http, dialog,$sails) {
   var vm = this;
 
   vm.jsondata = {
@@ -9,25 +9,45 @@ app.controller('vehicletypeupdate',['$scope','$http', 'dialog',function ($scope,
     cartype:"",       //车辆类型
     carload:0,        //载重
     carlen:0,         //车长
-    remark:"",        //备注
-    datasource:""     //数据来源   
+    remark:""        //备注
   };
 
   vm.jsondata = $scope.vehicletype;
+  vm.status = $scope.status;
+
 
   vm.update = function(){
     if($scope.myForm.$valid){
-      $http.post(lpt_host + '/zeus/ws/parking/pcartype/saveorupdate', vm.jsondata)
-      .success(function(data){
-        if(data.code == "200"){
-          $scope.closeThisDialog(data);
-        }
-        else{
-          dialog.notify(data.msg, 'error');
-        }
-      }).error(function(data) {
-        dialog.notify(data.msg, 'error');
-      });
+
+      if($scope.vehicletype){
+        $sails.put("/pcartype/"+vm.jsondata.id,vm.jsondata)
+                .success(function (data) {
+                  if(data){
+                    $scope.closeThisDialog(data);
+                  }
+                  else{
+                    dialog.notify(data.msg, 'error');
+                  }
+                })
+                .error(function (data) {
+                  dialog.notify(data.msg, 'error');
+                });
+      }else{
+        $sails.post("/pcartype",vm.jsondata)
+                .success(function (data) {
+                  if(data){
+                    $scope.closeThisDialog(data);
+                  }
+                  else{
+                    dialog.notify(data.msg, 'error');
+                  }
+                })
+                .error(function (data) {
+                  dialog.notify(data.msg, 'error');
+                });
+      }
+
+
     }
     $scope.myForm.submitted = true;
   }

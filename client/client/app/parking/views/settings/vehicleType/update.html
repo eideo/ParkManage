@@ -1,5 +1,5 @@
 <div ng-controller="vehicletypeupdate as vm">
-  <div class="light-box-title"><span class="text-white">新建车辆类型</span></div>
+  <div class="light-box-title"><span class="text-white">{{vm.status}}车辆类型</span></div>
   <form class="form-horizontal text-normal" name="myForm" autocomplete="off" ng-submit="vm.update()" novalidate>
     <div class="form-group">
       <label for="cartypecode" class="col-sm-3 control-label"><code>*</code>类型编号</label>

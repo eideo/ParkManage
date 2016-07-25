@@ -2,7 +2,7 @@
 
 var app=angular.module('parkingApp');
 
-app.controller('feescalelist',['$scope','$http','dialog',function ($scope, $http, dialog) {
+app.controller('feescalelist',['$scope','$http','dialog','$sails',function ($scope, $http, dialog,$sails) {
   var vm = this;
 
   // 配置分页基本参数
@@ -16,26 +16,24 @@ app.controller('feescalelist',['$scope','$http','dialog',function ($scope, $http
   vm.feescalelist = [];
 
   vm.querydata = {
-    page: 1, 
+    page: 1,
     rows: 10
   };
 
   vm.getfeescalelist = function(){
-    if($scope.paginationConf.currentPage > 0){
-      vm.querydata.page= $scope.paginationConf.currentPage;
-      vm.querydata.rows= $scope.paginationConf.itemsPerPage;
-      $http.get(lpt_host + '/zeus/ws/parking/pcharges/getlist',{ params: vm.querydata}).success(function(data) {
-        if(data.code="200")
+
+      $sails.get('/pcharges').success(function(data) {
+        if(data)
         {
-          vm.feescalelist = data.body.data;
+          vm.feescalelist = data;
           // 变更分页的总数
-          $scope.paginationConf.totalItems = data.body.totalRecords;
+          // $scope.paginationConf.totalItems = data.body.totalRecords;
           // // 变更产品条目
           // $scope.products = data.items;
         }
       });
     }
-  }
+
 
   vm.querylist = function(){
     $scope.paginationConf.currentPage =1;
@@ -43,15 +41,16 @@ app.controller('feescalelist',['$scope','$http','dialog',function ($scope, $http
 
   vm.clickToAdd = function () {
     $scope.feescale = null;
-    dialog.open({ 
+    $scope.status = "新增";
+    dialog.open({
       template : 'app/parking/views/settings/feeScale/update.html',
-      scope : $scope,//将scope传给test.html,以便显示地址详细信息  
+      scope : $scope,//将scope传给test.html,以便显示地址详细信息
       preCloseCallback : function(data) {
         // if(confirm('Are you sure you want to close without saving your changes?')) {
         //   return true;
         // }
         // return false;
-        if(data != null && data.code=="200"){
+        if(data){
           vm.getfeescalelist();
           dialog.notify('添加成功！', 'success');
         }
@@ -61,15 +60,16 @@ app.controller('feescalelist',['$scope','$http','dialog',function ($scope, $http
 
   vm.clickToEdit = function (feescale) {
     $scope.feescale = feescale;
-    dialog.open({ 
+    $scope.status = "编辑";
+    dialog.open({
       template : 'app/parking/views/settings/feeScale/update.html',
-      scope : $scope,//将scope传给test.html,以便显示地址详细信息  
+      scope : $scope,//将scope传给test.html,以便显示地址详细信息
       preCloseCallback : function(data) {
         // if(confirm('Are you sure you want to close without saving your changes?')) {
         //   return true;
         // }
         // return false;
-        if(data != null && data.code=="200"){
+        if(data){
           vm.getfeescalelist();
           dialog.notify('编辑成功！', 'success');
         }
@@ -82,7 +82,7 @@ app.controller('feescalelist',['$scope','$http','dialog',function ($scope, $http
       if (data) {
       $http.delete(lpt_host + '/zeus/ws/parking/pcharges/delete/' + feescale.id)
       .success(function(data){
-        if(data != null && data.code=="200"){
+        if(data){
           vm.getfeescalelist();
           dialog.notify('删除成功！', 'success');
         }

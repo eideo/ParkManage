@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('setUpParkCtrl',['$scope','$http', 'dialog',function ($scope, $http, dialog) {
+app.controller('setUpParkCtrl',['$scope','$http', 'dialog','$sails',function ($scope, $http, dialog,$sails) {
   var vm = this;
 
   vm.jsondata = {
@@ -11,8 +11,7 @@ app.controller('setUpParkCtrl',['$scope','$http', 'dialog',function ($scope, $ht
     starttime:0,   //停车过夜开始时间
     endtime:0,     //停车过夜结束时间
     htime:"",       //客房结算时间
-    mintime:"",     //过夜费收取时长 
-    datasource:""   //数据来源
+    mintime:""     //过夜费收取时长
   };
 
   //优惠设置查询

@@ -1,4 +1,4 @@
-<div class="content-box"  ng-controller="vehicletypelist as vm">   
+<div class="content-box"  ng-controller="vehicletypelist as vm">
 <!--     <div class="search-box">
     <form class="form-inline" role="form">
         <div class="form-group">
@@ -30,9 +30,8 @@
                     <!-- <td><input type="checkbox"></td> -->
                     <!-- <td>编号</td> -->
                     <td>操作</td>
+                    <td>类型编号</td>
                     <td>车辆类型</td>
-                    <td>车长</td>
-                    <td>载重（吨）</td>
                     <!-- <td>停车费用（元）</td> -->
                     <td>备注</td>
                 </tr>
@@ -46,14 +45,14 @@
                         <!-- <a href="" class="glyphicon glyphicon-usd" title="金额设置"></a> -->
                         <a href="" class="glyphicon glyphicon-trash margin-h10" title="删除" ng-click="vm.clickToDelete(v)"></a>
                     </td>
+                    <td>{{v.cartypecode}}</td>
                     <td>{{v.cartype}}</td>
-                    <td>{{v.carlen}}</td>
-                    <td>{{v.carload}}</td>
+
                     <!-- <td>{{v.cartypecode}}</td> -->
                     <td>{{v.remark}}</td>
                 </tr>
-            </tbody>            
-        </table> 
+            </tbody>
+        </table>
     </div>
     <div>
         <tm-pagination conf="paginationConf" class="page-fix"></tm-pagination>

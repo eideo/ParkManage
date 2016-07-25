@@ -7,8 +7,6 @@ app.controller('vehicletypeupdate',['$scope','$http', 'dialog','$sails',function
     id:"",            //主键，新增时会自动生成
     cartypecode:"",   //类型编号
     cartype:"",       //车辆类型
-    carload:0,        //载重
-    carlen:0,         //车长
     remark:""        //备注
   };
 

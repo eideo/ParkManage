@@ -52,8 +52,9 @@ app.controller('vehileparklist',['$scope','$http','dialog','$sails',function ($s
 
   //查询停车位
   vm.getParkinglotlist = function(parkingid){
-    $http.get(lpt_host + '/zeus/ws/parking/pparking/getParkingInfo/' + parkingid).success(function(data) {
-      if(data.code == "200"){
+    $sails.get('/pparking?parkingmgid='+ parkingid).success(function(data) {
+      if(data){
+        vm.parkinglotlist = data;
         // vm.parkinglotlist = [];
         // var row = 0;
         // var count = data.body.length;
@@ -72,8 +73,11 @@ app.controller('vehileparklist',['$scope','$http','dialog','$sails',function ($s
         //   };
         //   vm.parkinglotlist.push(gp);
         // }
-        vm.parkinglotlist = data.body;
+
       }
+    })
+    .error(function (data) {
+      dialog.notify(data.msg, 'error');
     });
   }
 
@@ -88,7 +92,7 @@ app.controller('vehileparklist',['$scope','$http','dialog','$sails',function ($s
         //   return true;
         // }
         // return false;
-        if(data != null && data.code == "200"){
+        if(data){
           vm.getParkinglotlist(vm.parking.id);
         }
       }
@@ -99,9 +103,9 @@ app.controller('vehileparklist',['$scope','$http','dialog','$sails',function ($s
   vm.clickToDeleteSeat = function (parkseat) {
     dialog.confirmDialog('确认是否要删除车位[' + parkseat.parkingno + ']?').then(function (data) {
       if (data) {
-        $http.delete(lpt_host + '/zeus/ws/parking/pparking/delete/' + parkseat.id)
+        $sails.delete('/pparking/'+ parkseat.id)
         .success(function(data){
-          if(data != null && data.code=="200"){
+          if(data){
             vm.getParkinglotlist(vm.parking.id);
             dialog.notify('删除成功！', 'success');
           }

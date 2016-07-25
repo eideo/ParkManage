@@ -15,20 +15,7 @@
         <span class="help-block" ng-show="myForm.submitted && myForm.cartype.$error.required">请输入1-20个字符的车辆类型！</span>
       </div>
     </div>
-    <div class="form-group">
-      <label class="col-sm-3 control-label"><code>*</code>载重</label>
-      <div class="col-sm-9" ng-class="{'has-error':myForm.submitted && myForm.carload.$invalid}">
-        <input type="number" name="carload" class="form-control width-154" ng-model="vm.jsondata.carload" placeholder="载重" min="1" max="999" required>
-        <span class="help-block" ng-show="myForm.submitted && (myForm.carload.$error.number || myForm.carload.$error.min || myForm.carload.$error.max)">输入的载重有误，载重范围为1-999！</span>
-      </div>
-    </div>
-    <div class="form-group">
-      <label class="col-sm-3 control-label"><code>*</code>车长</label>
-      <div class="col-sm-9" ng-class="{'has-error':myForm.submitted && myForm.carlen.$invalid}">
-        <input name="carlen" type="number" class="form-control width-154" ng-model="vm.jsondata.carlen" placeholder="车长" min="1" max="99" required>
-        <span class="help-block" ng-show="myForm.submitted && (myForm.carlen.$error.number || myForm.carlen.$error.min || myForm.carlen.$error.max)">输入的车长有误，车长范围为1-99！</span>
-      </div>
-    </div>
+
     <div class="form-group">
       <label class="col-sm-3 control-label">备注</label>
       <div class="col-sm-9">

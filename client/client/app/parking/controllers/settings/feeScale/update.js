@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('feescaleupdate',['$scope','$http', 'dialog',function ($scope, $http, dialog) {
+app.controller('feescaleupdate',['$scope','$http', 'dialog','$sails',function ($scope, $http, dialog,$sails) {
   var vm = this;
 
   vm.jsondata = {
@@ -11,16 +11,16 @@ app.controller('feescaleupdate',['$scope','$http', 'dialog',function ($scope, $h
     price1:0          //收费金额
   };
 
-  if($scope.feescale!=null){
-    vm.jsondata = $scope.feescale;
-  }
+
+  vm.jsondata = $scope.feescale;
+  vm.status = $scope.status;
 
   //查询车辆类型
   vm.getvehicletypelist = function(){
-    $http.get(lpt_host + '/zeus/ws/parking/pcartype/getlist',{ params:{page: 1, rows: 10}}).success(function(data) {
-      if(data.code="200")
+    $sails.get('/pcartype').success(function(data) {
+      if(data)
       {
-        $scope.cartype = data.body.data;
+        $scope.cartype = data;
       }
     });
   }
@@ -28,17 +28,30 @@ app.controller('feescaleupdate',['$scope','$http', 'dialog',function ($scope, $h
   //新增OR修改
   vm.update = function(){
     // vm.jsondata.cartypecode = $scope.cartype.cartypecode;
-    for(var i=0; i< $scope.cartype.length; i++){ 
+    for(var i=0; i< $scope.cartype.length; i++){
       if($scope.cartype[i].cartypecode == vm.jsondata.cartypecode) {
         vm.jsondata.cartypename = $scope.cartype[i].cartype;
         break;
       }
-    } 
+    }
     // vm.jsondata.cartypename = $scope.cartype.filter(vm.jsondata.cartypecode));
     if($scope.myForm.$valid){
-      $http.post(lpt_host + '/zeus/ws/parking/pcharges/saveorupdate', vm.jsondata)
+      if($scope.feescale){
+        $sails.put('/pcharges/'+vm.jsondata.id, vm.jsondata)
+        .success(function(data){
+          if(data){
+            $scope.closeThisDialog(data);
+          }
+          else{
+            dialog.notify(data.msg, 'error');
+          }
+        }).error(function(data) {
+          dialog.notify(data.msg, 'error');
+        });
+    }else{
+      $sails.post('/pcharges', vm.jsondata)
       .success(function(data){
-        if(data.code == "200"){
+        if(data){
           $scope.closeThisDialog(data);
         }
         else{
@@ -47,6 +60,7 @@ app.controller('feescaleupdate',['$scope','$http', 'dialog',function ($scope, $h
       }).error(function(data) {
         dialog.notify(data.msg, 'error');
       });
+    }
     }
     $scope.myForm.submitted = true;
   }

@@ -1,19 +1,18 @@
 'use strict';
 
-app.controller('vehileparkaddseat',['$scope','$http', 'dialog',function ($scope, $http, dialog) {
+app.controller('vehileparkaddseat',['$scope','$http', 'dialog','$sails',function ($scope, $http, dialog,$sails) {
   var vm = this;
 
   vm.jsondata = {
     parkingno:"",
     // pparkingstatus:"1",
-    parkingmgid:"",
-    datasource:"1"
+    parkingmgid:""
   };
   vm.addseat = function(){
     if($scope.myForm.$valid){
       vm.jsondata.parkingno = $scope.carparking.parkingmgcode + $scope.parkingno;
       vm.jsondata.parkingmgid = $scope.carparking.id;
-      $http.post(lpt_host + '/zeus/ws/parking/pparking/saveorupdate', vm.jsondata)
+      $sails.post("/pparking", vm.jsondata)
       .success(function(data){
         $scope.closeThisDialog(data);
       }).error(function(data) {

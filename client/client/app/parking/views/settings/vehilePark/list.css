@@ -30,3 +30,11 @@ a:hover{text-decoration: none;}
 .empty-dirty{background: #FFB6B6;border: 1px solid #f65551;}
 .no-use{background: #9a9a9a;border: 1px solid #6d6d6d;}
 .car-room-all{overflow: auto;float: left;padding-left: 20px;position:absolute; top:42px; bottom:0;}
+.room-a-close {
+    width: 7px;
+    height: 7px;
+    background: url(/assets/images/setbtn-close.png) no-repeat;
+    margin-top: 11px;
+    position: absolute;
+    right: 1px;
+    top: 6px;}

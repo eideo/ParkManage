@@ -41,7 +41,7 @@ app.controller('vehileparklist',['$scope','$http','dialog','$sails',function ($s
   vm.clickToDeletePark = function (vehicletype) {
     dialog.confirmDialog('确认是否要删除['+ vehicletype.parkname +']?').then(function (data) {
       if (data) {
-        $http.delete(lpt_host + '/zeus/ws/parking/pparkingmg/delete/' + vehicletype.id)
+        $sails.delete('/pparkingmg/' + vehicletype.id)
         .success(function(data){
           vm.getCarParkList();
           dialog.notify('删除成功！', 'success');
@@ -52,7 +52,7 @@ app.controller('vehileparklist',['$scope','$http','dialog','$sails',function ($s
 
   //查询停车位
   vm.getParkinglotlist = function(parkingid){
-    $sails.get('/pparking?parkingmgid='+ parkingid).success(function(data) {
+    $sails.get('/pparking?sort=parkingno ASC&parkingmgid='+ parkingid).success(function(data) {
       if(data){
         vm.parkinglotlist = data;
         // vm.parkinglotlist = [];

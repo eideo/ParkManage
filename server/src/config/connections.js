@@ -56,15 +56,15 @@ module.exports.connections = {
    * Run: npm install waterline-mssql --save                                  *
    *                                                                          *
    ***************************************************************************/
-  someMssqlServer: {
-    adapter: 'waterline-mssql',
-    host: '192.168.1.238',
-    user: 'all580', //optional
-    password: 'all580', //optional
-    database: 'WSMS', //optional
-    connectionTimeout: 20000,
-    useUTC: false
-  },
+  // someMssqlServer: {
+  //   adapter: 'waterline-mssql',
+  //   host: '192.168.1.238',
+  //   user: 'all580', //optional
+  //   password: 'all580', //optional
+  //   database: 'WSMS', //optional
+  //   connectionTimeout: 20000,
+  //   useUTC: false
+  // },
 
   /***************************************************************************
    *                                                                          *

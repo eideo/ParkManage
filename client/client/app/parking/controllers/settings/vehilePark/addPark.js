@@ -19,6 +19,49 @@ app.controller('vehileparkaddpark',['$scope','$http', 'dialog','$sails',function
     if($scope.myForm.$valid){
       $sails.post("/pparkingmg", vm.jsondata)
       .success(function(data){
+
+        data.id;
+        data.parkingmgcode;
+        data.mastnum;
+        for(var i=1;i<=data.mastnum;i++){
+          if(i<10){
+            i='00'+i;
+          }else if(10<i<100){
+            i='0'+i;
+          }
+          vm.data = {
+            parkingno:data.parkingmgcode+i,
+            parkingmgid:data.id
+          }
+          $sails.post("/pparking", vm.data)
+              .success(function(data){
+
+              }).error(function(data) {
+
+              });
+
+        }
+
+
+        // vm.jsondata = {
+        //   parkingno:"",
+        //   // pparkingstatus:"1",
+        //   parkingmgid:""
+        // };
+        // vm.addseat = function(){
+        //   if($scope.myForm.$valid){
+        //     vm.jsondata.parkingno = $scope.carparking.parkingmgcode + $scope.parkingno;
+        //     vm.jsondata.parkingmgid = $scope.carparking.id;
+        //     $sails.post("/pparking", vm.jsondata)
+        //     .success(function(data){
+        //       $scope.closeThisDialog(data);
+        //     }).error(function(data) {
+        //       dialog.notify(data.msg, 'error');
+        //     });
+        //   }
+        //   $scope.myForm.submitted = true;
+        // }
+
         // alert("添加成功!");
         $scope.closeThisDialog(data);
       }).error(function(data) {
